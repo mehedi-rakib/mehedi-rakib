@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/ui/theme-toggle";
+import { AiOutlineCode } from 'react-icons/ai'; // Example icon
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,7 +43,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/">
+          {/* <Link href="/">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -51,7 +52,26 @@ export default function Navbar() {
             >
               MehediRakib
             </motion.div>
-          </Link>
+          </Link> */}
+          
+
+<Link href="/">
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+    className="text-xl md:text-2xl font-bold cursor-pointer flex items-center space-x-2"
+  >
+    
+    <span className="flex items-center">Mehedi <span><motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <AiOutlineCode className="mx-1 text-lg" /> {/* Adjust size and color */}
+    </motion.div></span> Rakib</span>
+  </motion.div>
+</Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8">

@@ -7,48 +7,38 @@ import { motion } from "framer-motion";
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Receipt Generator",
     description:
-      "A full-featured e-commerce platform with product listings, cart functionality, user authentication, and payment integration.",
-    image: "/projects/ecommerce.jpg",
-    tags: ["React", "Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    liveUrl: "https://example-ecommerce.vercel.app",
-    githubUrl: "https://github.com/mehedirakib/ecommerce",
+      "I contributed to the frontend of receipt-generator.io, helping to build and refine the user interface for their receipt generation tool.",
+    image: "https://receiptgenerator.io/images/receipt_generator_cover_image.png",
+    tags: ["React", "Next.js", "Tailwind CSS"],
+    liveUrl: "https://receiptgenerator.io",
+    githubUrl: "/",
     category: "web",
   },
   {
     id: 2,
-    title: "Task Management App",
+    title: "Education Management System",
     description:
-      "A productivity application that allows users to create, organize, and track their tasks with features like drag-and-drop, filters, and notifications.",
-    image: "/projects/task-app.jpg",
-    tags: ["React", "Redux", "Node.js", "Express", "MongoDB"],
-    liveUrl: "https://example-taskapp.vercel.app",
-    githubUrl: "https://github.com/mehedirakib/taskapp",
+      "The platform includes a fully developed Education Management System to manage students, courses, and educational resources.",
+    image: "/japan.png",
+    tags: ["Next.js", "Laravel", "MySQL", "Tailwind", "linux"],
+    liveUrl: "https://japanambition.com",
+    githubUrl: "",
     category: "web",
   },
   {
     id: 3,
-    title: "Weather Dashboard",
+    title: "Daily Needs BD",
     description:
-      "A weather application that provides real-time weather information, forecasts, and animated visualizations for locations worldwide.",
-    image: "/projects/weather-app.jpg",
-    tags: ["React", "API Integration", "Chart.js", "CSS Modules"],
-    liveUrl: "https://example-weather.vercel.app",
+      "As a full-stack developer, I built the entire Daily Needs BD e-commerce website, from the user interface to the backend functionality.",
+    image: "/daily.png",
+    tags: ["Laravel 12", "API Integration", "Payment getway", "CSS Modules"],
+    liveUrl: "https://dailyneedsbd.com",
     githubUrl: "https://github.com/mehedirakib/weather",
     category: "ui",
   },
-  {
-    id: 4,
-    title: "Portfolio Website",
-    description:
-      "A professional portfolio website showcasing skills, projects, and contact information with a modern and responsive design.",
-    image: "/projects/portfolio.jpg",
-    tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
-    liveUrl: "https://mehedirakib.com",
-    githubUrl: "https://github.com/mehedirakib/portfolio",
-    category: "ui",
-  },
+  
 ];
 
 const fadeInUp = {
@@ -65,7 +55,12 @@ const ProjectCard = ({ project }) => {
       <div className="relative h-48 w-full overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/10 z-10" />
         <div className="bg-gray-200 dark:bg-gray-700 h-full w-full flex items-center justify-center">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">Project Image</p>
+          <img
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-fit w-full h-full"
+          />
         </div>
       </div>
       <div className="p-4 sm:p-6 flex-grow flex flex-col">
@@ -90,7 +85,7 @@ const ProjectCard = ({ project }) => {
             rel="noopener noreferrer"
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors flex-grow sm:flex-grow-0 text-center"
           >
-            Live Demo
+            Live
           </a>
           <a
             href={project.githubUrl}
