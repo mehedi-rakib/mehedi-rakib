@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import FacebookMessenger from "@/components/FacebookMessenger";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "MehediRakib - Portfolio",
     description: "Web Developer Portfolio for Mehedi Rakib",
-    url: "https://mehedirakib.com",
+    url: "https://mehedi-rakib.vercel.app",
     siteName: "MehediRakib Portfolio",
     locale: "en_US",
     type: "website",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           {children}
+          <FacebookMessenger />
         </ThemeProvider>
       </body>
     </html>

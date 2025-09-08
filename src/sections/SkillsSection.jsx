@@ -9,7 +9,6 @@ import {
   FaGitAlt, 
   FaGithub, 
   FaFigma,
-  FaLaravel,
   FaBitbucket
 } from "react-icons/fa";
 import { 
@@ -56,8 +55,6 @@ const skillCategories = [
       { name: "Express.js", icon: SiExpress, color: "text-gray-700 dark:text-gray-300" },
       { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
       { name: "REST API", icon: TbApi, color: "text-blue-500" },
-      { name: "GraphQL", icon: SiGraphql, color: "text-pink-600" },
-      { name: "Laravel", icon: FaLaravel, color: "text-red-600" },
     ],
   },
   {
