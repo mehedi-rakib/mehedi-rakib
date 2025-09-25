@@ -1,9 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const ContactSection = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const formRef = useRef(null);
+  const infoRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +25,110 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 3D Title entrance
+      gsap.fromTo(titleRef.current,
+        {
+          rotateX: -90,
+          opacity: 0,
+          y: 100,
+          z: -200,
+          transformPerspective: 1000,
+        },
+        {
+          rotateX: 0,
+          opacity: 1,
+          y: 0,
+          z: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // 3D Form animation
+      gsap.fromTo(formRef.current,
+        {
+          rotateY: 45,
+          opacity: 0,
+          x: 100,
+          z: -150,
+        },
+        {
+          rotateY: 0,
+          opacity: 1,
+          x: 0,
+          z: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // 3D Info card animation
+      gsap.fromTo(infoRef.current,
+        {
+          rotateY: -45,
+          opacity: 0,
+          x: -100,
+          z: -150,
+        },
+        {
+          rotateY: 0,
+          opacity: 1,
+          x: 0,
+          z: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: infoRef.current,
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Form input focus animations
+      const inputs = formRef.current?.querySelectorAll('input, textarea');
+      inputs?.forEach((input) => {
+        input.addEventListener('focus', () => {
+          gsap.to(input, {
+            scale: 1.02,
+            rotateX: -2,
+            y: -5,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+
+        input.addEventListener('blur', () => {
+          gsap.to(input, {
+            scale: 1,
+            rotateX: 0,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,32 +165,39 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold">Get In Touch</h2>
-          <div className="h-1 w-20 bg-blue-500 mx-auto mb-8"></div>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Have a question or want to work together? Feel free to contact me
-            through the form below or via my social media channels.
-          </p>
-        </motion.div>
+    <section 
+      ref={sectionRef}
+      id="contact" 
+      className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
+    >
+      {/* 3D Background elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl floating-element"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500 rounded-full blur-3xl floating-element"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-pink-500 rounded-full blur-2xl floating-element"></div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="bg-gray-50 dark:bg-gray-900 p-6 sm:p-8 rounded-xl shadow-md"
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div 
+          ref={titleRef}
+          className="mb-16 text-center preserve-3d"
+        >
+          <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 rounded-full"></div>
+          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 text-lg">
+            Ready to bring your ideas to life with cutting-edge 3D web experiences? 
+            Let's collaborate and create something extraordinary together.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start perspective-1000">
+          <div
+            ref={infoRef}
+            className="bg-gray-800 p-8 sm:p-10 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 preserve-3d glass-3d hover-3d"
           >
-            <h3 className="text-xl sm:text-2xl font-bold mb-6">Contact Information</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-blue-600 dark:text-blue-400">Let's Connect</h3>
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-blue-100 dark:bg-blue-900/30 p-2 sm:p-3 rounded-full text-blue-600 dark:text-blue-400">
@@ -190,20 +313,19 @@ const ContactSection = () => {
                 </svg>
               </a>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+          <div
+            ref={formRef}
+            className="bg-gray-800 p-8 sm:p-10 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 preserve-3d glass-3d"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-purple-600 dark:text-purple-400">Send Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6 preserve-3d">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Name
                   </label>
@@ -213,14 +335,14 @@ const ContactSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+                    className="w-full px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300 preserve-3d"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Email
                   </label>
@@ -230,7 +352,7 @@ const ContactSection = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+                    className="w-full px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300 preserve-3d"
                     required
                   />
                 </div>
@@ -238,7 +360,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Subject
                 </label>
@@ -248,51 +370,65 @@ const ContactSection = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+                  className="w-full px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300 preserve-3d"
                   required
                 />
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+                  className="w-full px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300 preserve-3d resize-none"
                   required
                 ></textarea>
               </div>
 
               {submitError && (
-                <div className="text-red-500 text-sm">{submitError}</div>
+                <div className="text-red-500 text-sm bg-red-50 dark:bg-red-900/20 p-3 rounded-lg">
+                  {submitError}
+                </div>
               )}
 
               {submitSuccess && (
-                <div className="text-green-500 text-sm">
+                <div className="text-green-500 text-sm bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
                   Your message has been sent successfully! I'll get back to you soon.
                 </div>
               )}
 
               <div>
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors font-medium ${
+                  whileHover={{ scale: 1.02, rotateX: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 preserve-3d ${
                     isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </button>
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </motion.button>
               </div>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
