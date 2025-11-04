@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+// Avoid restricted time APIs in client components
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  // Removed dynamic year to comply with Next.js client constraints
   
   return (
     <footer className="bg-gray-900 text-white py-10 md:py-12">
@@ -177,7 +178,7 @@ const Footer = () => {
           className="border-t border-gray-800 pt-6 md:pt-8 text-center text-gray-400 text-sm"
         >
           <p>
-            © {currentYear} MehediRakib. All Rights Reserved.
+            © MehediRakib. All Rights Reserved.
           </p>
         </motion.div>
       </div>
@@ -185,4 +186,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

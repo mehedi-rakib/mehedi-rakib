@@ -3,13 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ThreeBackground from "@/components/ThreeBackground";
+// Removed GSAP for cleaner UX
 
 // Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// GSAP removed
 
 const projects = [
   {
@@ -55,146 +53,8 @@ const fadeInUp = {
 
 const ProjectCard = ({ project, index }) => {
   const cardRef = useRef(null);
-  const imageRef = useRef(null);
-  const contentRef = useRef(null);
 
-  useEffect(() => {
-    const card = cardRef.current;
-    const image = imageRef.current;
-    const content = contentRef.current;
-    if (!card || !image || !content) return;
-
-    // Enhanced 3D hover effects
-    const handleMouseEnter = () => {
-      if (window.innerWidth > 768) {
-        gsap.to(card, {
-          y: -20,
-          scale: 1.05,
-          rotateX: 8,
-          rotateY: 5,
-          z: 100,
-          boxShadow: "0 30px 60px rgba(59, 130, 246, 0.3)",
-          duration: 0.6,
-          ease: "power2.out",
-        });
-        
-        gsap.to(image, {
-          scale: 1.2,
-          rotation: 3,
-          z: 50,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-
-        gsap.to(content.querySelectorAll('.project-tag'), {
-          scale: 1.1,
-          rotateY: 5,
-          duration: 0.4,
-          stagger: 0.05,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      if (window.innerWidth > 768) {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          rotateX: 0,
-          rotateY: 0,
-          z: 0,
-          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
-          duration: 0.6,
-          ease: "power2.out",
-        });
-        
-        gsap.to(image, {
-          scale: 1,
-          rotation: 0,
-          z: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-
-        gsap.to(content.querySelectorAll('.project-tag'), {
-          scale: 1,
-          rotateY: 0,
-          duration: 0.4,
-          stagger: 0.03,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    // Mouse move parallax effect
-    const handleMouseMove = (e) => {
-      if (window.innerWidth > 768) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        gsap.to(card, {
-          rotateX: rotateX,
-          rotateY: rotateY,
-          duration: 0.3,
-          ease: "power1.out",
-        });
-      }
-    };
-
-    card.addEventListener('mouseenter', handleMouseEnter);
-    card.addEventListener('mouseleave', handleMouseLeave);
-    card.addEventListener('mousemove', handleMouseMove);
-
-    // Enhanced initial 3D entrance animation
-    gsap.fromTo(card, 
-      {
-        y: 100,
-        rotateX: 90,
-        opacity: 0,
-        scale: 0.8,
-        z: -200,
-      },
-      {
-        y: 0,
-        rotateX: 0,
-        opacity: 1,
-        scale: 1,
-        z: 0,
-        duration: 1.2,
-        delay: index * 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%",
-          end: "bottom 10%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    // Continuous floating animation
-    gsap.to(card, {
-      y: "-10px",
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: index * 0.3
-    });
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-      card.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [index]);
+  // Animations removed for cleaner UX
 
   return (
     <motion.div
@@ -205,7 +65,6 @@ const ProjectCard = ({ project, index }) => {
       <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-800">
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-20" />
         <div 
-          ref={imageRef}
           className="h-full w-full flex items-center justify-center relative overflow-hidden preserve-3d"
         >
           <img
@@ -244,7 +103,6 @@ const ProjectCard = ({ project, index }) => {
       </div>
       
       <div 
-        ref={contentRef}
         className="p-6 sm:p-8 flex-grow flex flex-col preserve-3d"
       >
         <h3 className="text-xl sm:text-2xl font-bold mb-4 line-clamp-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -308,80 +166,7 @@ const ProjectsSection = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Enhanced 3D Title animation
-      gsap.fromTo(titleRef.current,
-        {
-          rotateX: -90,
-          opacity: 0,
-          y: 100,
-          z: -200,
-          transformPerspective: 1000,
-        },
-        {
-          rotateX: 0,
-          opacity: 1,
-          y: 0,
-          z: 0,
-          duration: 1.5,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Enhanced filter buttons 3D animation
-      const buttons = sectionRef.current?.querySelectorAll('.filter-button');
-      buttons?.forEach((button, index) => {
-        gsap.fromTo(button,
-          {
-            rotateY: 45,
-            opacity: 0,
-            y: 50,
-            scale: 0.8,
-          },
-          {
-            rotateY: 0,
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            delay: index * 0.15,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: button,
-              start: "top 85%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      });
-
-      // Background floating elements
-      gsap.to('.floating-bg-element', {
-        y: "random(-30, 30)",
-        x: "random(-20, 20)",
-        rotation: "random(-15, 15)",
-        scale: "random(0.8, 1.2)",
-        duration: "random(4, 8)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: {
-          amount: 3,
-          from: "random"
-        }
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  // GSAP-based section animations removed
 
   const filteredProjects =
     filter === "all"
@@ -394,14 +179,7 @@ const ProjectsSection = () => {
       id="projects" 
       className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden perspective-2000"
     >
-      {/* Enhanced 3D background decorative elements */}
-      <div className="absolute inset-0 opacity-30 dark:opacity-20">
-        <div className="floating-bg-element absolute top-20 right-10 w-40 h-40 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-3xl"></div>
-        <div className="floating-bg-element absolute bottom-40 left-20 w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl"></div>
-        <div className="floating-bg-element absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full blur-xl"></div>
-        <div className="floating-bg-element absolute top-1/4 left-1/4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full blur-lg"></div>
-        <div className="floating-bg-element absolute bottom-1/4 right-1/4 w-20 h-20 bg-gradient-to-br from-pink-400 to-red-400 rounded-full blur-lg"></div>
-      </div>
+      <ThreeBackground />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div
@@ -539,4 +317,4 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection; 
+export default ProjectsSection;

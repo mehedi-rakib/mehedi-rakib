@@ -2,13 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// GSAP removed for cleaner UX
+import ThreeBackground from "@/components/ThreeBackground";
 
 // Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// GSAP plugin registration removed
 
 const ContactSection = () => {
   const sectionRef = useRef(null);
@@ -26,109 +24,7 @@ const ContactSection = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 3D Title entrance
-      gsap.fromTo(titleRef.current,
-        {
-          rotateX: -90,
-          opacity: 0,
-          y: 100,
-          z: -200,
-          transformPerspective: 1000,
-        },
-        {
-          rotateX: 0,
-          opacity: 1,
-          y: 0,
-          z: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // 3D Form animation
-      gsap.fromTo(formRef.current,
-        {
-          rotateY: 45,
-          opacity: 0,
-          x: 100,
-          z: -150,
-        },
-        {
-          rotateY: 0,
-          opacity: 1,
-          x: 0,
-          z: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // 3D Info card animation
-      gsap.fromTo(infoRef.current,
-        {
-          rotateY: -45,
-          opacity: 0,
-          x: -100,
-          z: -150,
-        },
-        {
-          rotateY: 0,
-          opacity: 1,
-          x: 0,
-          z: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: infoRef.current,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Form input focus animations
-      const inputs = formRef.current?.querySelectorAll('input, textarea');
-      inputs?.forEach((input) => {
-        input.addEventListener('focus', () => {
-          gsap.to(input, {
-            scale: 1.02,
-            rotateX: -2,
-            y: -5,
-            duration: 0.3,
-            ease: "power2.out"
-          });
-        });
-
-        input.addEventListener('blur', () => {
-          gsap.to(input, {
-            scale: 1,
-            rotateX: 0,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out"
-          });
-        });
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  // GSAP-based animations removed for simplicity
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -170,12 +66,7 @@ const ContactSection = () => {
       id="contact" 
       className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
     >
-      {/* 3D Background elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl floating-element"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500 rounded-full blur-3xl floating-element"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-pink-500 rounded-full blur-2xl floating-element"></div>
-      </div>
+      <ThreeBackground />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div 
@@ -187,8 +78,8 @@ const ContactSection = () => {
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 rounded-full"></div>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 text-lg">
-            Ready to bring your ideas to life with cutting-edge 3D web experiences? 
-            Let's collaborate and create something extraordinary together.
+            Building robust MERN-stack apps with clean APIs and performant UIs.
+            Let’s collaborate to ship reliable features and delightful experiences.
           </p>
         </div>
 
@@ -435,4 +326,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection; 
+export default ContactSection;

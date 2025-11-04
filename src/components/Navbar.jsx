@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
+// GSAP removed for cleaner UX
 import { AiOutlineCode } from 'react-icons/ai';
 
 export default function Navbar() {
@@ -28,30 +28,7 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    // Initial navbar animation
-    const ctx = gsap.context(() => {
-      gsap.from(logoRef.current, {
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        ease: "back.out(1.7)",
-        delay: 0.2
-      });
-
-      gsap.from(navLinksRef.current?.children, {
-        y: -30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        delay: 0.5
-      });
-
-    }, navbarRef);
-
-    return () => ctx.revert();
-  }, []);
+  // Initial GSAP animations removed
 
   const navLinks = [
     { name: "Home", href: "#hero" },
@@ -207,4 +184,4 @@ export default function Navbar() {
       </AnimatePresence>
     </header>
   );
-} 
+}
