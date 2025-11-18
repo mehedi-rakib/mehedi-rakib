@@ -11,7 +11,7 @@ type SectionTitleProps = {
 
 export default function SectionTitle({ title, eyebrow, className }: SectionTitleProps) {
   return (
-    <motion.div className={clsx("mb-8", className)} initial="hidden" whileInView="show" viewport={{ once: true }} variants={staggerParent}>
+    <motion.div className={clsx("mb-8", className)} initial={false} whileInView="show" viewport={{ once: true }} variants={staggerParent}>
       {eyebrow && (
         <motion.div variants={fadeInUp} className="text-sm tracking-widest uppercase accent">{eyebrow}</motion.div>
       )}

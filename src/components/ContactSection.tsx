@@ -11,7 +11,7 @@ export default function ContactSection({ id }: { id?: string }) {
     { label: "Email", href: "mailto:mehedirakib.dev@gmail.com", icon: MdEmail },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mehedirakib", icon: FaLinkedin },
     { label: "GitHub", href: "https://github.com/mehedi-rakib", icon: FaGithub },
-    { label: "Twitter", href: "https://twitter.com/replace", icon: FaTwitter },
+    { label: "Twitter", href: "https://twitter.com/mehedirakib", icon: FaTwitter },
   ];
 
   const [name, setName] = useState("");
@@ -39,13 +39,13 @@ export default function ContactSection({ id }: { id?: string }) {
       // Mailto fallback opens the email client
       const subject = encodeURIComponent(`New inquiry from ${name}`);
       const body = encodeURIComponent(message + "\n\n" + `Reply-to: ${email}`);
-      window.location.href = `mailto:replace@your.email?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:mehedirakib.dev@gmail.com?subject=${subject}&body=${body}`;
 
       setStatus({ type: "success", text: "Thanks! Opening your email client…" });
       setName("");
       setEmail("");
       setMessage("");
-    } catch (err) {
+    } catch {
       setStatus({ type: "error", text: "Something went wrong. Please try again." });
     } finally {
       setSubmitting(false);

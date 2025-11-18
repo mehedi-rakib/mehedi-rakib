@@ -25,7 +25,7 @@ export default function HeroSection({
   const socials = [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mehedirakib", icon: <FaLinkedin /> },
     { label: "GitHub", href: "https://github.com/mehedi-rakib", icon: <FaGithub /> },
-    { label: "Twitter", href: "https://twitter.com/replace", icon: <FaTwitter /> },
+    { label: "Twitter", href: "https://twitter.com/mehedirakib", icon: <FaTwitter /> },
     { label: "Email", href: "mailto:mehedirakib.dev@gmail.com", icon: <MdEmail /> },
   ];
 
@@ -34,13 +34,12 @@ export default function HeroSection({
   return (
     <section id={id} className="section">
       <div className="container relative overflow-hidden">
-        {/* Glossy overlay */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden />
 
         {/* Two-column layout with minimal gap and tighter right column */}
         <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,380px)] items-start">
           {/* Left: headline, copy, CTA */}
-          <motion.div initial="hidden" whileInView="show" viewport={whileInViewDefaults} variants={headlineParent}>
+          <motion.div initial={false} whileInView="show" viewport={whileInViewDefaults} variants={headlineParent}>
             {/* Availability */}
             <div className="mb-3 flex items-center gap-2 text-sm text-muted">
               <motion.span
@@ -69,17 +68,17 @@ export default function HeroSection({
                   {city}
                 </motion.span>
               </motion.div>
-              <motion.div variants={lineVariant} className="text-4xl sm:text-5xl md:text-6xl leading-tight font-semibold">
+              <div className="text-4xl sm:text-5xl md:text-6xl leading-tight font-semibold">
                 turning your ideas into
-              </motion.div>
-              <motion.div variants={lineVariant} className="text-4xl sm:text-5xl md:text-6xl leading-tight font-semibold">
+              </div>
+              <div className="text-4xl sm:text-5xl md:text-6xl leading-tight font-semibold">
                 pixel-perfect realities
-              </motion.div>
+              </div>
             </div>
 
             {/* Supporting copy */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={whileInViewDefaults}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -102,17 +101,17 @@ export default function HeroSection({
           </motion.div>
 
           {/* Right column: experience pill + profile + social icons */}
-          <motion.div initial="hidden" whileInView="show" viewport={whileInViewDefaults} variants={rightPanelVariant} className="hidden md:flex md:justify-self-end w-full">
+          <motion.div initial={false} whileInView="show" viewport={whileInViewDefaults} variants={rightPanelVariant} className="hidden md:flex md:justify-self-end w-full">
             {/* Experience pill button */}
             <div className="flex md:justify-end absolute top-1/2 right-0">
-              <motion.span initial={{ opacity: 0, y: -10, x: 20 }} whileInView={{ opacity: 1, y: 0, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="rounded-full px-4 py-2 border border-zinc-700 text-sm bg-zinc-900/60">
+              <motion.span initial={false} whileInView={{ opacity: 1, y: 0, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="rounded-full px-4 py-2 border border-zinc-700 text-sm bg-zinc-900/60">
                 {experienceText}
               </motion.span>
             </div>
 
             <div className="absolute bottom-10 right-0">
             {/* Profile */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="mt-4 flex items-center gap-4 md:justify-end">
+            <motion.div initial={false} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="mt-4 flex items-center gap-4 md:justify-end">
               
               <div className="text-right">
                 <div className="text-sm font-semibold">{name}</div>
@@ -142,7 +141,7 @@ export default function HeroSection({
         </div>
 
         <motion.div
-          initial={{ scaleX: 0 }}
+          initial={false}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
           className="mt-8 h-[2px] w-full origin-left accent-bg"

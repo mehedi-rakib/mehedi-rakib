@@ -6,12 +6,13 @@ import { motion } from "framer-motion";
 type Skill = { name: string; level: number };
 
 const defaultSkills: Skill[] = [
-  { name: "Node.js", level: 90 },
+  
   { name: "Next.js", level: 90 },
   { name: "React", level: 90 },
   { name: "Laravel", level: 85 },
-  { name: "TypeScript", level: 85 },
-  { name: "Tailwind CSS", level: 85 },
+  { name: "TypeScript", level: 90 },
+  { name: "Tailwind CSS", level: 98 },
+  { name: "Node.js", level: 80 },
 ];
 
 export default function SkillsSection({ id, skills = defaultSkills }: { id?: string; skills?: Skill[] }) {
