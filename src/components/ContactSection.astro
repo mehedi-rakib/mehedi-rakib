@@ -1,0 +1,7 @@
+---
+import { socials } from '../data/portfolio';
+---
+<section class="contact section" id="contact">
+  <div class="shell reveal"><p class="eyebrow">Have an ambitious idea?</p><h2>Let’s build<br/><em>what’s next.</em></h2><p class="contact-note">I’m open to product engineering roles, ambitious freelance builds, and thoughtful collaborations.</p><a class="contact-cta" href="mailto:mehedirakib.dev@gmail.com"><span>mehedirakib.dev@gmail.com</span><b>↗</b></a></div>
+  <footer class="footer shell"><p>© {new Date().getFullYear()} MD Mehedi Hasan Rakib · Dhaka, Bangladesh</p><div>{socials.map(social => <a href={social.href} target="_blank">{social.label} ↗</a>)}<a href="#top">Top ↑</a></div></footer>
+</section>

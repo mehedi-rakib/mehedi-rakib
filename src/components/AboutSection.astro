@@ -1,0 +1,59 @@
+<section class="manifesto shell section" id="about">
+  <p class="eyebrow reveal">01 — How I think</p>
+  <p class="statement reveal">I don’t build features.<br/><em>I solve business problems</em><br/>through technology.</p>
+  <div class="about-content reveal">
+    <figure class="portrait-wrap">
+      <img src="/images/mehedi.webp" alt="MD Mehedi Hasan Rakib" width="1200" height="1200" loading="lazy" />
+      <figcaption><span>MD Mehedi Hasan Rakib</span><span>Dhaka, Bangladesh</span></figcaption>
+    </figure>
+    <div class="about-grid">
+      <p>I started as a graphic designer and discovered that the part I loved most wasn’t making things look good—it was understanding why they needed to exist.</p>
+      <p>Over 3+ years, that instinct grew into product engineering: owning the path from an unclear problem to a production-ready experience across web, mobile, ecommerce and AI.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-content {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.75fr) 1.4fr;
+    gap: clamp(40px, 8vw, 130px);
+    align-items: end;
+  }
+
+  .portrait-wrap {
+    margin: 0;
+  }
+
+  .portrait-wrap img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.82) contrast(1.04);
+  }
+
+  .portrait-wrap figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 12px;
+    font: 10px 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .about-grid {
+    margin-left: 0;
+  }
+
+  @media (max-width: 800px) {
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+
+    .portrait-wrap {
+      width: min(100%, 430px);
+    }
+  }
+</style>

@@ -1,0 +1,7 @@
+---
+import { skills } from '../data/portfolio';
+---
+<section class="capabilities section">
+  <div class="shell"><p class="eyebrow reveal">04 — Capabilities</p></div>
+  <div class="skill-list">{skills.map((skill, index) => <div class="skill-row reveal"><span>0{index + 1}</span><h3>{skill.label}</h3><p>{skill.items}</p><b>↗</b></div>)}</div>
+</section>

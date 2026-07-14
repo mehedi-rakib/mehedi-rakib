@@ -1,0 +1,62 @@
+---
+import { certificates } from '../data/portfolio';
+---
+<section class="certificates section" id="certificates">
+  <div class="shell">
+    <div class="certificates-heading reveal">
+      <p class="eyebrow">05 — Certifications</p>
+      <h2>Always learning.<br/><em>Always shipping.</em></h2>
+    </div>
+
+    <div class="certificate-grid">
+      {certificates.map((certificate, index) => (
+        <article class="certificate-card reveal">
+          <a
+            href={certificate.verificationUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Verify ${certificate.title} certificate from ${certificate.issuer}`}
+          >
+            <div class="certificate-image">
+              <img
+                src={certificate.image}
+                alt={`${certificate.title} certificate issued by ${certificate.issuer}`}
+                loading="lazy"
+              />
+              <span class="verify-button">Verify certificate ↗</span>
+            </div>
+          </a>
+          <div class="certificate-meta">
+            <span>0{index + 1}</span>
+            <div><h3>{certificate.title}</h3><p>{certificate.issuer} · {certificate.issued}</p></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certificates { background: #dedbd2; }
+  .certificates-heading { display: grid; grid-template-columns: .55fr 1fr; align-items: start; }
+  .certificates-heading h2 { margin: 0 0 clamp(60px, 9vw, 130px); font-size: clamp(48px, 7vw, 108px); line-height: .95; letter-spacing: -.07em; font-weight: 500; }
+  .certificates-heading em { color: #688900; font-weight: 400; }
+  .certificate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+  .certificate-card:nth-child(2) { margin-top: 9vw; }
+  .certificate-image { position: relative; overflow: hidden; background: #fff; }
+  .certificate-image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .verify-button { position: absolute; right: 14px; bottom: 14px; padding: 11px 14px; background: #c8ff00; color: #10110f; font: 500 9px 'DM Mono', monospace; text-transform: uppercase; box-shadow: 0 8px 30px rgba(0,0,0,.18); transform: translateY(70px); transition: transform .3s ease; }
+  .certificate-image:hover img { transform: scale(1.025); }
+  .certificate-image:hover .verify-button,
+  .certificate-card a:focus-visible .verify-button { transform: none; }
+  .certificate-meta { display: grid; grid-template-columns: 40px 1fr; padding-top: 20px; border-top: 1px solid rgba(16,17,15,.2); margin-top: 12px; }
+  .certificate-meta > span, .certificate-meta p { font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+  .certificate-meta h3 { margin: 0 0 8px; font-size: clamp(18px, 1.6vw, 25px); letter-spacing: -.035em; }
+  .certificate-meta p { margin: 0; color: #686a63; line-height: 1.5; }
+  @media (max-width: 800px) {
+    .certificates-heading { grid-template-columns: 1fr; gap: 35px; }
+    .certificate-grid { grid-template-columns: 1fr; gap: 55px; }
+    .certificate-card:nth-child(2) { margin-top: 0; }
+    .verify-button { transform: none; }
+  }
+</style>

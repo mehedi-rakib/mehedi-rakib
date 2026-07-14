@@ -1,0 +1,96 @@
+---
+import type { Project } from '../data/portfolio';
+interface Props { project: Project }
+const { project } = Astro.props;
+const primaryLink = project.links[0];
+---
+<article class={`project ${project.tone} reveal`}>
+  <div class="project-copy">
+    <p class="project-meta"><span>{project.id}</span><span>{project.type}</span></p>
+    <h3>{project.name}</h3>
+    <p>{project.summary}</p>
+    <div class="project-facts">
+      <div><span>My role</span><p>{project.role}</p></div>
+      <div><span>Status</span><p>{project.status}</p></div>
+    </div>
+    <div class="project-highlights">
+      <span>Product highlights</span>
+      {project.highlights.map(highlight => <p>{highlight}</p>)}
+    </div>
+    <ul>{project.tags.map(tag => <li>{tag}</li>)}</ul>
+    <div class="project-links">{project.links.map(link => <a href={link.href} target="_blank">{link.label} ↗</a>)}</div>
+  </div>
+  <a class="project-visual" data-tilt href={primaryLink?.href} target="_blank" aria-label={`Visit ${project.name}`}>
+    <div class="browser-chrome"><i></i><i></i><i></i><span>{project.name.toLowerCase().replaceAll(' ', '')}.product</span></div>
+    {project.image ? <img class="project-image" src={project.image} alt={`${project.name} project interface`} loading="lazy" width="1600" height="1000"/> : <div class="image-placeholder"><span>PROJECT IMAGE</span><small>1600 × 1000 px · WebP</small></div>}
+    <span class="view">Visit live ↗</span>
+  </a>
+</article>
+
+<style>
+  .project-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #3b3c38;
+  }
+
+  .project-facts span,
+  .project-highlights > span {
+    display: block;
+    margin-bottom: 8px;
+    color: #777a73;
+    font: 9px 'DM Mono', monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .project-facts p {
+    margin: 0;
+    color: #f1efe8;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .project-highlights {
+    margin-top: 25px;
+  }
+
+  .project-highlights p {
+    position: relative;
+    margin: 0;
+    padding: 7px 0 7px 18px;
+    color: #b7b8af;
+    font-size: 12px;
+    line-height: 1.45;
+    border-bottom: 1px solid #292a27;
+  }
+
+  .project-highlights p::before {
+    content: '↳';
+    position: absolute;
+    left: 0;
+    color: #c8ff00;
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .project-links a {
+    padding-bottom: 6px;
+    color: #f1efe8;
+    border-bottom: 1px solid #777;
+    font: 10px 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 800px) {
+    .project-facts { grid-template-columns: 1fr; }
+  }
+</style>
