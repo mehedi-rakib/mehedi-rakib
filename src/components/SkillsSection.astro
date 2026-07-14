@@ -1,7 +1,125 @@
 ---
 import { skills } from '../data/portfolio';
 ---
-<section class="capabilities section">
-  <div class="shell"><p class="eyebrow reveal">04 — Capabilities</p></div>
-  <div class="skill-list">{skills.map((skill, index) => <div class="skill-row reveal"><span>0{index + 1}</span><h3>{skill.label}</h3><p>{skill.items}</p><b>↗</b></div>)}</div>
+<section class="capabilities section" id="skills">
+  <div class="shell"><p class="eyebrow reveal">05 — Capabilities</p></div>
+  <div class="skill-list">
+    {skills.map((skill, index) => (
+      <div class="skill-row reveal">
+        <span>0{index + 1}</span>
+        <h3>{skill.label}</h3>
+        <p>{skill.items}</p>
+        <b>↗</b>
+      </div>
+    ))}
+  </div>
 </section>
+
+<style>
+  /* Lift text above pseudo-element layers */
+  .skill-row span,
+  .skill-row h3,
+  .skill-row p,
+  .skill-row b {
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-row {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Override global lime with transparent so ::before takes over */
+  .skill-row:hover {
+    background: transparent;
+  }
+
+  /* ── Layer 1: animated water gradient ──────────────── */
+  .skill-row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      118deg,
+      #a8f0ef 0%,
+      #6dd8f4 18%,
+      #b2f7dc 36%,
+      #68d8f8 54%,
+      #9beee8 72%,
+      #a2eef9 90%,
+      #b2f4ef 100%
+    );
+    background-size: 320% 320%;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+    pointer-events: none;
+    animation: waterFlow 7s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+
+  .skill-row:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+
+  /* ── Layer 2: cursor light (sunlight on water) ─────── */
+  .skill-row::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 42% 200% at var(--mx, 50%) 50%,
+      rgba(255, 255, 255, 0.62),
+      rgba(255, 255, 255, 0.12) 38%,
+      transparent 62%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .skill-row:hover::after {
+    opacity: 1;
+  }
+
+  /* ── Text micro-animations ─────────────────────────── */
+  .skill-row h3 {
+    transition: letter-spacing 0.45s ease;
+  }
+  .skill-row:hover h3 {
+    letter-spacing: -0.06em;
+  }
+
+  .skill-row b {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.35s ease;
+  }
+  .skill-row:hover b {
+    transform: translate(5px, -5px);
+    color: #007599;
+  }
+
+  .skill-row span {
+    transition: color 0.35s ease;
+  }
+  .skill-row:hover span {
+    color: #006d7a;
+  }
+
+  .skill-row p {
+    transition: color 0.35s ease;
+  }
+  .skill-row:hover p {
+    color: #3a7a82;
+  }
+
+  /* ── Water flow keyframes ──────────────────────────── */
+  @keyframes waterFlow {
+    0%   { background-position:   0%  30%; }
+    25%  { background-position:  85%  65%; }
+    50%  { background-position: 100%  10%; }
+    75%  { background-position:  30%  90%; }
+    100% { background-position:   0%  30%; }
+  }
+</style>

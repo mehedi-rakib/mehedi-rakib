@@ -3,6 +3,6 @@ import { projects } from '../data/portfolio';
 import ProjectCard from './ProjectCard.astro';
 ---
 <section class="work section" id="work">
-  <div class="shell work-heading reveal"><p class="eyebrow">02 — Selected systems</p><h2>Work built to<br/><em>make an impact.</em></h2></div>
+  <div class="shell work-heading reveal"><p class="eyebrow" style="color:#666">02 — Selected systems</p><h2>Work built to<br/><em>make an impact.</em></h2></div>
   <div class="projects shell">{projects.map(project => <ProjectCard project={project} />)}</div>
 </section>

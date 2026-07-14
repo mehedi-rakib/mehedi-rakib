@@ -43,3 +43,4 @@ backup
 backup/*
 dist/
 .astro/
+.claude/*

@@ -1,14 +1,32 @@
 <section class="manifesto shell section" id="about">
   <p class="eyebrow reveal">01 — How I think</p>
-  <p class="statement reveal">I don’t build features.<br/><em>I solve business problems</em><br/>through technology.</p>
+  <p class="statement reveal">I don't build features.<br/><em>I solve business problems</em><br/>through technology.</p>
+
   <div class="about-content reveal">
     <figure class="portrait-wrap">
       <img src="/images/mehedi.webp" alt="MD Mehedi Hasan Rakib" width="1200" height="1200" loading="lazy" />
-      <figcaption><span>MD Mehedi Hasan Rakib</span><span>Dhaka, Bangladesh</span></figcaption>
+      <figcaption>
+        <span>MD Mehedi Hasan Rakib</span>
+        <span>Dhaka, Bangladesh</span>
+      </figcaption>
     </figure>
-    <div class="about-grid">
-      <p>I started as a graphic designer and discovered that the part I loved most wasn’t making things look good—it was understanding why they needed to exist.</p>
-      <p>Over 3+ years, that instinct grew into product engineering: owning the path from an unclear problem to a production-ready experience across web, mobile, ecommerce and AI.</p>
+
+    <div class="about-right">
+      <div class="about-grid">
+        <p>I started as a graphic designer and discovered that the part I loved most wasn't making things look good—it was understanding <em>why</em> they needed to exist in the first place.</p>
+        <p>Over 3+ years, that instinct grew into product engineering: owning the full path from an unclear problem to a production-ready experience across web, mobile, ecommerce and AI.</p>
+      </div>
+      <p class="about-extended reveal">
+        Today I work at the intersection of design thinking and full-stack engineering. I've shipped a public Shopify app, a published Android application, an AI virtual try-on, and multiple production platforms—each one starting with the same question: <em>what business problem are we actually solving?</em>
+      </p>
+      <ul class="about-values reveal">
+        <li>Product thinking</li>
+        <li>User experience first</li>
+        <li>Performance matters</li>
+        <li>Continuous learning</li>
+        <li>Ownership</li>
+        <li>Business impact</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -16,24 +34,20 @@
 <style>
   .about-content {
     display: grid;
-    grid-template-columns: minmax(260px, 0.75fr) 1.4fr;
+    grid-template-columns: minmax(240px, 0.72fr) 1.4fr;
     gap: clamp(40px, 8vw, 130px);
-    align-items: end;
+    align-items: start;
   }
-
-  .portrait-wrap {
-    margin: 0;
-  }
-
+  .portrait-wrap { margin: 0; }
   .portrait-wrap img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
+    max-height: 480px;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
     filter: saturate(0.82) contrast(1.04);
   }
-
   .portrait-wrap figcaption {
     display: flex;
     justify-content: space-between;
@@ -42,18 +56,23 @@
     font: 10px 'DM Mono', monospace;
     text-transform: uppercase;
   }
-
-  .about-grid {
-    margin-left: 0;
+  .about-right { display: flex; flex-direction: column; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; }
+  .about-grid p { font-size: clamp(17px, 1.35vw, 21px); line-height: 1.65; margin: 0; }
+  .about-grid em { font-style: italic; }
+  .about-extended {
+    margin: clamp(24px, 3vw, 40px) 0 0;
+    font-size: clamp(15px, 1.15vw, 18px);
+    line-height: 1.7;
+    color: #4a4b46;
   }
+  .about-extended em { color: var(--ink); font-style: italic; }
 
+  @media (max-width: 1000px) {
+    .about-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
   @media (max-width: 800px) {
-    .about-content {
-      grid-template-columns: 1fr;
-    }
-
-    .portrait-wrap {
-      width: min(100%, 430px);
-    }
+    .about-content { grid-template-columns: 1fr; }
+    .portrait-wrap { width: min(100%, 430px); }
   }
 </style>
