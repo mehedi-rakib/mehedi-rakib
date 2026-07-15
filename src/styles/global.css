@@ -172,7 +172,7 @@ a { color: inherit; text-decoration: none; }
   gap: 3vw;
   align-items: center;
   flex: 1;
-  padding: 4vh 0;
+  padding: 2vh 0;
 }
 .hero-left { display: flex; flex-direction: column; }
 .hero h1 {
@@ -180,7 +180,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 0.87;
   letter-spacing: -0.075em;
   font-weight: 500;
-  margin: 0 0 4vh;
+  margin: 0 0 2.5vh;
 }
 .line { display: block; overflow: hidden; padding-bottom: 0.1em; }
 .line > span { display: block; animation: intro 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
@@ -415,8 +415,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── Section base ──────────────────────────────────────── */
 .section {
-  padding-top: clamp(100px, 13vw, 210px);
-  padding-bottom: clamp(100px, 13vw, 210px);
+  padding-top: clamp(56px, 6vw, 96px);
+  padding-bottom: clamp(56px, 6vw, 96px);
 }
 .eyebrow { font: 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.12em; }
 
@@ -425,7 +425,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(42px, 6vw, 94px);
   line-height: 1.02;
   letter-spacing: -0.06em;
-  margin: 80px 0;
+  margin: 40px 0;
 }
 .manifesto .statement em,
 .work h2 em,
@@ -468,9 +468,9 @@ a { color: inherit; text-decoration: none; }
   line-height: 0.93;
   letter-spacing: -0.07em;
   font-weight: 500;
-  margin: 65px 0 110px;
+  margin: 36px 0 56px;
 }
-.projects { display: grid; gap: 22vh; }
+.projects { display: grid; gap: 10vh; }
 .project {
   display: grid;
   grid-template-columns: 0.72fr 1.28fr;
@@ -580,8 +580,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── Career ────────────────────────────────────────────── */
 .career-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; }
-.career h2 { font-size: clamp(48px, 6vw, 92px); margin-top: 65px; }
-.timeline { padding-top: 85px; }
+.career h2 { font-size: clamp(48px, 6vw, 92px); margin-top: 36px; }
+.timeline { padding-top: 40px; }
 .timeline article {
   display: grid;
   grid-template-columns: 90px 1fr;
@@ -620,7 +620,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 0.93;
   letter-spacing: -0.07em;
   font-weight: 500;
-  margin: 65px 0 90px;
+  margin: 36px 0 48px;
 }
 .process-steps {
   display: grid;
@@ -672,7 +672,7 @@ a { color: inherit; text-decoration: none; }
 .process-step:hover .process-arrow { opacity: 1; transform: none; }
 
 /* ─── Skills / Capabilities ─────────────────────────────── */
-.skill-list { margin-top: 70px; }
+.skill-list { margin-top: 36px; }
 .skill-row {
   width: min(92vw, 1440px);
   margin: auto;
@@ -693,7 +693,7 @@ a { color: inherit; text-decoration: none; }
 .proof-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 70px;
+  margin-top: 36px;
 }
 .proof-grid div {
   min-height: 240px;
@@ -716,11 +716,11 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── Contact ───────────────────────────────────────────── */
 .contact { background: var(--lime); padding-bottom: 30px; }
-.contact h2 { font-size: clamp(70px, 11vw, 170px); margin: 70px 0; }
+.contact h2 { font-size: clamp(70px, 11vw, 170px); margin: 40px 0; }
 .contact h2 em { color: var(--ink); }
 .contact-note { font-size: 20px; max-width: 550px; line-height: 1.6; margin-left: 50%; }
 .contact-cta {
-  margin: 70px 0 110px 50%;
+  margin: 40px 0 60px 50%;
   border-bottom: 2px solid var(--ink);
   display: flex;
   justify-content: space-between;
@@ -772,6 +772,11 @@ a { color: inherit; text-decoration: none; }
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
+/* Project visual gets a larger, slower slide for more impact */
+.project-visual.reveal-left {
+  transform: translateX(-110px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .reveal-right {
   opacity: 0;
   transform: translateX(56px);
@@ -811,7 +816,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 0 5vh;
+  margin: 0 0 2.5vh;
 }
 .proof-chip {
   display: inline-flex;
@@ -831,14 +836,14 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── About – Why Product Engineering ───────────────────── */
 .about-why {
-  margin-top: clamp(60px, 8vw, 100px);
-  padding-top: clamp(40px, 5vw, 60px);
+  margin-top: clamp(32px, 4vw, 56px);
+  padding-top: clamp(24px, 3vw, 36px);
   border-top: 1px solid var(--line);
 }
 .about-why-grid {
   display: grid;
   grid-template-columns: 0.6fr 1.4fr;
-  gap: clamp(40px, 6vw, 100px);
+  gap: clamp(28px, 4vw, 60px);
   align-items: start;
 }
 .about-why h3 {
@@ -873,9 +878,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── Project ecosystem ─────────────────────────────────── */
 .ecosystem-banner {
-  padding: clamp(40px, 6vw, 72px) 0 clamp(50px, 7vw, 80px);
+  padding: clamp(24px, 3vw, 40px) 0 clamp(28px, 4vw, 48px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  margin-bottom: clamp(8vh, 10vw, 14vh);
+  margin-bottom: clamp(4vh, 5vw, 8vh);
 }
 .ecosystem-banner > span {
   display: block;
@@ -901,9 +906,9 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 .more-work-divider {
-  padding: clamp(6vh, 8vw, 12vh) 0 clamp(5vh, 7vw, 10vh);
+  padding: clamp(3vh, 4vw, 6vh) 0 clamp(3vh, 4vw, 5vh);
   border-top: 1px solid rgba(255, 255, 255, 0.07);
-  margin-top: clamp(6vh, 8vw, 10vh);
+  margin-top: clamp(3vh, 4vw, 6vh);
 }
 .more-work-divider span {
   font: 10px 'DM Mono', monospace;
@@ -920,7 +925,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 0.93;
   letter-spacing: -0.07em;
   font-weight: 500;
-  margin: 65px 0 80px;
+  margin: 36px 0 48px;
 }
 .writing-head em,
 .writing h2 em { color: var(--lime); font-weight: 400; }
@@ -1120,7 +1125,7 @@ a { color: inherit; text-decoration: none; }
   /* ─ Projects ─ */
   .project, .project:nth-child(even) { grid-template-columns: 1fr; gap: 35px; align-items: start; }
   .project:nth-child(even) .project-copy { order: 0; }
-  .projects { gap: 15vh; }
+  .projects { gap: 8vh; }
   .project-visual { padding: 10px; }
   .view { width: 72px; height: 72px; right: -10px; }
 
@@ -1161,6 +1166,12 @@ a { color: inherit; text-decoration: none; }
   /* ─ Proof chips mobile ─ */
   .hero-proof { gap: 8px; margin-bottom: 24px; }
   .proof-chip { padding: 7px 12px; font-size: 9px; }
+
+  /* ─ Project visual: fall back to vertical reveal on mobile ─ */
+  .project-visual.reveal-left {
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 /* ─── Reduced motion ─────────────────────────────────────── */

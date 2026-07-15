@@ -4,8 +4,8 @@ interface Props { project: Project }
 const { project } = Astro.props;
 const primaryLink = project.links[0];
 ---
-<article class={`project ${project.tone} reveal`}>
-  <div class="project-copy">
+<article class={`project ${project.tone}`}>
+  <div class="project-copy reveal d1">
     <p class="project-meta"><span>{project.id}</span><span>{project.type}</span></p>
     <h3>{project.name}</h3>
     <p class="project-summary">{project.summary}</p>
@@ -45,7 +45,7 @@ const primaryLink = project.links[0];
       {project.links.map(link => <a href={link.href} target="_blank">{link.label} ↗</a>)}
     </div>
   </div>
-  <a class="project-visual" data-tilt href={primaryLink?.href} target="_blank" aria-label={`Visit ${project.name}`}>
+  <a class="project-visual reveal-left" data-tilt href={primaryLink?.href} target="_blank" aria-label={`Visit ${project.name}`}>
     <div class="browser-chrome"><i></i><i></i><i></i><span>{project.name.toLowerCase().replaceAll(' ', '')}.product</span></div>
     <div class="project-image-clip">
       {project.image ? <img class="project-image" src={project.image} alt={`${project.name} project interface`} loading="lazy" width="1600" height="1000"/> : <div class="image-placeholder"><span>PROJECT IMAGE</span><small>1600 × 1000 px · WebP</small></div>}
