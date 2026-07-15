@@ -117,6 +117,7 @@ export const projects: Project[] = [
     solution: 'Rebuilt the Shopify store with clear product configuration UX, quantity pricing logic and a conversion-focused checkout journey.',
     impact: 'Cleaner path from product configuration to completed order. Directly serving the US custom print market.',
   },
+  /* Receipt Generator — temporarily commented out
   {
     id: '06',
     name: 'Receipt Generator',
@@ -133,6 +134,7 @@ export const projects: Project[] = [
     solution: 'Built a browser-based SaaS with 200+ customisable templates, real-time editing, custom branding and instant print-ready PDF export—fully mobile-friendly.',
     impact: 'Live SaaS product serving retail, travel, restaurant and service verticals. Operates as a self-sustaining revenue-generating product.',
   },
+  */
   {
     id: '07',
     name: 'Eurasia Supplies',
