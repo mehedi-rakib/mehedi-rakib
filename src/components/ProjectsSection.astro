@@ -3,6 +3,24 @@ import { projects } from '../data/portfolio';
 import ProjectCard from './ProjectCard.astro';
 ---
 <section class="work section" id="work">
-  <div class="shell work-heading reveal"><p class="eyebrow" style="color:#666">02 — Selected systems</p><h2>Work built to<br/><em>make an impact.</em></h2></div>
-  <div class="projects shell">{projects.map(project => <ProjectCard project={project} />)}</div>
+  <div class="shell work-heading reveal">
+    <p class="eyebrow" style="color:#666">02 — Products I've Shipped</p>
+    <h2>Products I've<br/><em>shipped to production.</em></h2>
+  </div>
+
+  <div class="projects shell">
+    <div class="ecosystem-banner reveal">
+      <span>Featured ecosystem · 3 connected products</span>
+      <h3>The Azan Wholesale Platform</h3>
+      <p>A complete B2B commerce ecosystem built from scratch — wholesale web platform, published Android app on Google Play, and a live app on the Shopify App Store. All sharing one product catalogue.</p>
+    </div>
+
+    {projects.slice(0, 3).map(project => <ProjectCard project={project} />)}
+
+    <div class="more-work-divider reveal">
+      <span>More shipped products</span>
+    </div>
+
+    {projects.slice(3).map(project => <ProjectCard project={project} />)}
+  </div>
 </section>

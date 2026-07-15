@@ -1,13 +1,72 @@
+---
+interface Props { base?: string }
+const { base = '' } = Astro.props;
+---
 <header class="nav shell">
-  <a class="brand" href="#top" aria-label="Home">R<span>•</span></a>
+  <a class="brand" href={base || '/'} aria-label="Home">R<span>•</span></a>
   <nav aria-label="Main navigation">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#career">Career</a>
-    <a href="#process">Process</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href={`${base}#work`}>Work</a>
+    <a href="/case-study">Case Studies</a>
+    <a href={`${base}#about`}>About</a>
+    <a href={`${base}#career`}>Career</a>
+    <a href={`${base}#skills`}>Skills</a>
+    <a href={`${base}#contact`}>Contact</a>
     <a href="/Mehedi-Rakib-Product-Engineer-CV.pdf" target="_blank">Résumé ↗</a>
   </nav>
-  <a class="availability" href="#contact"><i></i>Available for ideas</a>
+  <a class="availability" href={`${base}#contact`}><i></i>Available for ideas</a>
+  <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<div class="nav-overlay" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <a href={`${base}#work`}>Work</a>
+  <a href="/case-study">Case Studies</a>
+  <a href={`${base}#about`}>About</a>
+  <a href={`${base}#career`}>Career</a>
+  <a href={`${base}#skills`}>Skills</a>
+  <a href={`${base}#contact`}>Contact</a>
+  <a href="/Mehedi-Rakib-Product-Engineer-CV.pdf" target="_blank">Résumé ↗</a>
+  <div class="nav-overlay-foot">
+    <i aria-hidden="true"></i>
+    Available for ideas
+  </div>
+</div>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>('.nav-burger');
+  const overlay = document.getElementById('mobile-nav');
+
+  function openMenu() {
+    overlay?.classList.add('open');
+    burger?.classList.add('open');
+    burger?.setAttribute('aria-expanded', 'true');
+    overlay?.setAttribute('aria-hidden', 'false');
+    burger?.setAttribute('aria-label', 'Close navigation menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    overlay?.classList.remove('open');
+    burger?.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+    overlay?.setAttribute('aria-hidden', 'true');
+    burger?.setAttribute('aria-label', 'Open navigation menu');
+    document.body.style.overflow = '';
+  }
+
+  burger?.addEventListener('click', () => {
+    const isOpen = overlay?.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  overlay?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay?.classList.contains('open')) closeMenu();
+  });
+</script>
