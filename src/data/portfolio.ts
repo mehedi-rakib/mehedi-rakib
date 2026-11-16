@@ -42,7 +42,7 @@ export const projects: Project[] = [
     summary: 'A pharmacy mobile app connecting patients to affordable medicines. Buy medicines, get real-time prices, and order for home delivery.',
     tags: ['React Native', 'Android', 'Healthcare', 'Firebase'],
     tone: 'blue',
-    image: '/images/savers-pharma.png',
+    image: '/images/savers-pharma.jpg',
     role: 'Full-stack mobile · Android launch · User experience',
     status: 'Live on Google Play Store · 2026',
     highlights: ['Search and compare medicine prices in real-time', 'Secure order placement with multiple payment options', 'Track delivery status and order history', 'Push notifications for discounts and reminders'],
