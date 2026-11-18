@@ -1,0 +1,102 @@
+---
+// Optional LinkedIn CTA section - add to index.astro if you want to drive traffic to LinkedIn
+// This bridges your portfolio and LinkedIn profiles
+---
+
+<section class="linkedin-cta shell section">
+  <div class="linkedin-content reveal">
+    <div class="linkedin-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.39v-1.2h-2.5v8.5h2.5v-4.42c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.42h2.5M6.5 8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m1.25 13.5h-2.5V9h2.5v12.5z"/>
+      </svg>
+    </div>
+    <div class="linkedin-text">
+      <h3>Connect on LinkedIn</h3>
+      <p>Stay updated on my latest projects, insights, and availability for remote work.</p>
+    </div>
+    <a href="https://www.linkedin.com/in/mehedirakib/" target="_blank" class="linkedin-link">
+      <span>Follow on LinkedIn</span>
+      <b>↗</b>
+    </a>
+  </div>
+</section>
+
+<style>
+  .linkedin-cta {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2eef5 100%);
+    padding: clamp(40px, 6vw, 60px) 0;
+    margin-top: clamp(60px, 10vw, 100px);
+  }
+
+  .linkedin-content {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 4vw, 40px);
+    padding: clamp(20px, 4vw, 40px);
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #0a66c2;
+  }
+
+  .linkedin-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a66c2;
+    flex-shrink: 0;
+  }
+
+  .linkedin-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .linkedin-text h3 {
+    margin: 0 0 8px;
+    font-size: clamp(18px, 1.2vw, 24px);
+    font-weight: 600;
+  }
+
+  .linkedin-text p {
+    margin: 0;
+    font-size: clamp(14px, 1vw, 16px);
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #0a66c2;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .linkedin-link:hover {
+    background: #084fa6;
+    transform: translateX(2px);
+  }
+
+  .linkedin-link b {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 600px) {
+    .linkedin-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .linkedin-link {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>
